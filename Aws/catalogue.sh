@@ -26,7 +26,7 @@ VALIDATE() {
     fi
 }
 
-read -p "Please provide Mongodb Ip address: " MONGODB-SERVER-IPADDRESS
+read -p "Please provide Mongodb Ip address: " Mongodb_IP
 
 dnf module disable nodejs -y &>>$LOGS_FILE 
 VALIDATE $? "Nodejs disable"
@@ -51,7 +51,7 @@ VALIDATE $? "npm dependency"
 cp catalogue.service /etc/systemd/system/ &>>$LOGS_FILE
 VALIDATE $? "catalogue copy"
 
-sed -i "s/<MONGODB-SERVER-IPADDRESS>/${MONGODB-SERVER-IPADDRESS}/g" /etc/systemd/system/catalogue.service &>>$LOGS_FILE
+sed -i "s/<MONGODB-SERVER-IPADDRESS>/${Mongodb_IP}/g" /etc/systemd/system/catalogue.service &>>$LOGS_FILE
 VALIDATE $? "Mongo ip updated in /etc/systemd/system/catalogue.service"
 
 systemctl daemon-reload &>>$LOGS_FILE
@@ -66,7 +66,7 @@ VALIDATE $? "Mongodb repo Copy"
 dnf install mongodb-mongosh -y &>>$LOGS_FILE
 VALIDATE $? "Install Mongodb-mongosh"
 
-mongosh --host ${MONGODB-SERVER-IPADDRESS} </app/db/master-data.js &>>$LOGS_FILE
+mongosh --host ${Mongodb_IP} </app/db/master-data.js &>>$LOGS_FILE
 
-output=$(mongosh --host ${MONGODB-SERVER-IPADDRESS}) &>>$LOGS_FILE
+output=$(mongosh --host ${Mongodb_IP}) &>>$LOGS_FILE
 echo "$output"
