@@ -15,7 +15,7 @@ DOMAIN_NAME="vsp-97.online"
     --query 'Instances[*].[InstanceId]' \
     --output text)
 
-    if [ $i == frontend ]; then
+    if [ $i == "frontend" ]; then
      IP=$(aws ec2 describe-instances \
      --instance-ids $INSTANCE_ID \
      --query 'Reservations[*].Instances[*].PublicIpAddress' \
