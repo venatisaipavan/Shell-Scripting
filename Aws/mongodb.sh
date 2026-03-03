@@ -25,7 +25,7 @@ VALIDATE() {
     fi
 }
 
-cp C:\devops\Shell_Script_Repo\Shell-Scripting\Aws\mongo.repo /etc/yum.repos.d/ | tee -a $LOGS_FILE
+cp mongo.repo /etc/yum.repos.d/ | tee -a $LOGS_FILE
 VALIDATE $? "Mongodb Copy"
 
 dnf install mongodb-org -y | tee -a $LOGS_FILE
