@@ -29,7 +29,7 @@ DOMAIN_NAME="vsp-97.online"
      --query 'Reservations[*].Instances[*].PrivateIpAddress' \
      --output text)
 
-      RECORD_NAME="$instance.$DOMAIN_NAME" # daws88s.online
+      RECORD_NAME="$i.$DOMAIN_NAME" # daws88s.online
     fi
 
      echo "IP Address: $IP"
@@ -57,5 +57,5 @@ DOMAIN_NAME="vsp-97.online"
     }
     '
 
-    echo "record updated for $instance"
+    echo "record updated for $i"
   done
