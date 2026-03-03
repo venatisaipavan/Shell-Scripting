@@ -34,7 +34,7 @@ VALIDATE $? "Install Mongodb"
 systemctl enable --now mongod | tee -a $LOGS_FILE
 VALIDATE $? "start and enable mongod"
 
-sed -i "/s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf | tee -a $LOGS_FILE
+sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf | tee -a $LOGS_FILE
 VALIDATE $? "Configure change"
 
 systemctl restart mongod | tee -a $LOGS_FILE
