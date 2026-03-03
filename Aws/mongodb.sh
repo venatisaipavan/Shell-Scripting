@@ -25,17 +25,17 @@ VALIDATE() {
     fi
 }
 
-cp mongo.repo /etc/yum.repos.d/ | tee -a $LOGS_FILE
+cp mongo.repo /etc/yum.repos.d/ &>>$LOGS_FILE
 VALIDATE $? "Mongodb Copy"
 
-dnf install mongodb-org -y | tee -a $LOGS_FILE
+dnf install mongodb-org -y &>>$LOGS_FILE
 VALIDATE $? "Install Mongodb"
 
-systemctl enable --now mongod | tee -a $LOGS_FILE
+systemctl enable --now mongod &>>$LOGS_FILE
 VALIDATE $? "start and enable mongod"
 
-sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf | tee -a $LOGS_FILE
+sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>$LOGS_FILE
 VALIDATE $? "Configure change"
 
-systemctl restart mongod | tee -a $LOGS_FILE
+systemctl restart mongod &>>$LOGS_FILE
 VALIDATE $? "Restart mongod"
