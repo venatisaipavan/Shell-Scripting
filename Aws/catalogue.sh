@@ -5,6 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+Directory=$PWD
 
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
@@ -56,9 +57,7 @@ VALIDATE $? "unzip catalogue"
 cd /app ; npm install &>>$LOGS_FILE
 VALIDATE $? "npm dependency"
 
-cd ~-
-
-cp catalogue.service /etc/systemd/system/ &>>$LOGS_FILE
+cp $Director/catalogue.service /etc/systemd/system/ &>>$LOGS_FILE
 VALIDATE $? "catalogue copy"
 
 sed -i "s/<MONGODB-SERVER-IPADDRESS>/${Mongodb_IP}/g" /etc/systemd/system/catalogue.service &>>$LOGS_FILE
