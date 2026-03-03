@@ -35,7 +35,7 @@ DOMAIN_NAME="vsp-97.online"
      echo "IP Address: $IP"
 
     aws route53 change-resource-record-sets \
-    --hosted-zone-id $ZONE_ID \
+    --hosted-zone-id $Z_ID \
     --change-batch '
     {
         "Comment": "Updating record",
