@@ -1,0 +1,54 @@
+# Normal colors
+BLK="\e[30m"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+B="\e[34m"
+M="\e[35m"
+C="\e[36m"
+W="\e[37m"
+
+# Bright colors
+BLK_B="\e[90m"
+R_B="\e[91m"
+G_B="\e[92m"
+Y_B="\e[93m"
+B_B="\e[94m"
+M_B="\e[95m"
+C_B="\e[96m"
+W_B="\e[97m"
+
+# Reset
+N="\e[0m"
+
+# Normal background
+BG_BLK="\e[40m"
+BG_R="\e[41m"
+BG_G="\e[42m"
+BG_Y="\e[43m"
+BG_B="\e[44m"
+BG_M="\e[45m"
+BG_C="\e[46m"
+BG_W="\e[47m"
+
+# Bright background
+BG_BLK_B="\e[100m"
+BG_R_B="\e[101m"
+BG_G_B="\e[102m"
+BG_Y_B="\e[103m"
+BG_B_B="\e[104m"
+BG_M_B="\e[105m"
+BG_C_B="\e[106m"
+BG_W_B="\e[107m"
+
+
+BOLD="\e[1m"
+DIM="\e[2m"
+ITALIC="\e[3m"
+UNDER="\e[4m"
+BLINK="\e[5m"
+REV="\e[7m"
+HIDE="\e[8m"
+STRIKE="\e[9m"
+
+
