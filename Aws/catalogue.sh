@@ -78,5 +78,3 @@ VALIDATE $? "Install Mongodb-mongosh"
 
 mongosh --host ${Mongodb_IP} </app/db/master-data.js &>>$LOGS_FILE
 
-output=$(mongosh --host ${Mongodb_IP}) &>>$LOGS_FILE
-echo "$output"
