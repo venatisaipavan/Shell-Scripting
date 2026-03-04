@@ -46,7 +46,9 @@ VALIDATE $? "Removing old Nginx html"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_PATH
 VALIDATE $? "Curl frontend"
 
-unzip /tmp/frontend.zip /usr/share/nginx/html/ &>>$LOGS_PATH
+rm -rf /usr/share/nginx/html/*  &>>$LOGS_PATH
+
+unzip /tmp/frontend.zip -d /usr/share/nginx/html/ &>>$LOGS_PATH
 VALIDATE $? "html unzip"
 
 cp nginx.conf /etc/nginx &>>$LOGS_PATH
