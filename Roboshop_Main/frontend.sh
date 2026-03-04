@@ -11,46 +11,46 @@ LOGS_DIR="/var/log/Roboshop/"
 LOGS_PATH="$LOGS_DIR/$0.log"
 
 if [ $ID -ne 0 ]; then
-echo -e "$R This need Root Privilages..Exiting $N" | tee -a $LOGS_DIR
+echo -e "$R This need Root Privilages..Exiting $N" | tee -a $LOGS_PATH
 exit 1
 else
-echo -e "$G Thanks for Running via Root..$N " | tee -a $LOGS_DIR
+echo -e "$G Thanks for Running via Root..$N " | tee -a $LOGS_PATH
 fi
 
 mkdir -p $LOGS_DIR
 
 VALIDATE() {
     if [ $? -ne 0 ]; then
-    echo -e "$R$2 is failure... $N" | tee -a $LOGS_DIR
+    echo -e "$R$2 is failure... $N" | tee -a $LOGS_PATH
     exit 1
     else
-    echo -e "$G$2 is Success... $N" | tee -a $LOGS_DIR
+    echo -e "$G$2 is Success... $N" | tee -a $LOGS_PATH
     fi
 }
 
-dnf module disable nginx -y &>>$LOGS_DIR
+dnf module disable nginx -y &>>$LOGS_PATH
 VALIDATE $? "Disable Nginx"
 
-dnf module enable nginx:1.24 -y &>>$LOGS_DIR
+dnf module enable nginx:1.24 -y &>>$LOGS_PATH
 VALIDATE $? "enable Nginx"
 
-dnf install nginx -y &>>$LOGS_DIR
+dnf install nginx -y &>>$LOGS_PATH
 VALIDATE $? "Install Nginx"
 
-systemctl enable --now nginx &>>$LOGS_DIR
+systemctl enable --now nginx &>>$LOGS_PATH
 VALIDATE $? "Enable and start Nginx"
 
-rm -rf /usr/share/nginx/html/*  &>>$LOGS_DIR
+rm -rf /usr/share/nginx/html/*  &>>$LOGS_PATH
 VALIDATE $? "Removing old Nginx html"
 
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_DIR
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_PATH
 VALIDATE $? "Curl frontend"
 
-unzip /tmp/frontend.zip /usr/share/nginx/html/ &>>$LOGS_DIR
+unzip /tmp/frontend.zip /usr/share/nginx/html/ &>>$LOGS_PATH
 VALIDATE $? "html unzip"
 
-cp nginx.conf /etc/nginx &>>$LOGS_DIR
+cp nginx.conf /etc/nginx &>>$LOGS_PATH
 VALIDATE $? "Copy Nginx Conf"
 
-systemctl restart nginx  &>>$LOGS_DIR
+systemctl restart nginx  &>>$LOGS_PATH
 VALIDATE $? "Restart Nginx"
