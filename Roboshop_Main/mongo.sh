@@ -6,7 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOG_DIR="/var/log/roboshop/"
+LOG_DIR="/var/log/roboshop"
 LOG_Path="$LOG_DIR/$0.log"
 
 if [ $ID -ne 0 ]; then

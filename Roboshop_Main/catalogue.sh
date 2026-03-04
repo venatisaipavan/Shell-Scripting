@@ -7,7 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 DIR=$PWD
 
-LOGS_DIR="/var/log/Roboshop/"
+LOGS_DIR="/var/log/Roboshop"
 LOGS_PATH="$LOGS_DIR/$0.log"
 
 if [ $ID -ne 0 ]; then
