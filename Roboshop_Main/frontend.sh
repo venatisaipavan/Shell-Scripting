@@ -18,7 +18,7 @@ echo -e "$G Thanks for Running via Root..$N " | tee -a $LOGS_DIR
 
 mkdir -p $LOGS_DIR
 
-VALIDATE(){
+VALIDATE() {
     if [ $? -ne 0 ]; then
     echo -e "$R$2 is failure... $N" &>>$LOGS_DIR
     else
