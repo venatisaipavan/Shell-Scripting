@@ -24,7 +24,7 @@ VALIDATE() {
     exit 1
     else
     echo -e "$G$2 is Success... $N" &>>$LOGS_DIR
-        }
+}
 
 dnf module disable nginx -y
 VALIDATE $? "Disable Nginx"
