@@ -13,14 +13,14 @@ if [ $ID -ne 0 ]; then
     echo "$R Script Need Root Privilages..Exiting! $N" | tee -a $LOG_Path
     exit 1
     else
- echo "$G Thanks for running as Root $N " | tee -a $LOG_Path
+ echo -e "$G Thanks for running as Root $N " | tee -a $LOG_Path
 fi
 
 VALIDATE() {
    if [ $? -ne 0]; then
-    echo "$R$2... failure $N" &>>$LOG_Path
+    echo -e "$R$2... failure $N" &>>$LOG_Path
     else
-    echo " $G$2... success $N" &>>$LOG_Path
+    echo  -e "$G$2... success $N" &>>$LOG_Path
    fi
 }
 
