@@ -17,6 +17,7 @@ else
 echo -e "$G Thanks for Running via Root..$N " | tee -a $LOGS_PATH
 fi
 
+
 mkdir -p $LOGS_DIR
 
 VALIDATE() {
