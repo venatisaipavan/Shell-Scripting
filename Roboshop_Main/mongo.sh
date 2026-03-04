@@ -7,7 +7,7 @@ Y="\e[33m"
 N="\e[0m"
 
 LOG_DIR="/var/log/roboshop/"
-LOG_Path="LOG_DIR/$0.log"
+LOG_Path="$LOG_DIR/$0.log"
 
 if [ $ID -ne 0 ]; then
     echo "$R Script Need Root Privilages..Exiting! $N" | tee -a $LOG_Path
@@ -17,7 +17,7 @@ if [ $ID -ne 0 ]; then
 fi
 
 VALIDATE() {
-   if [ $? -ne 0]; then
+   if [ $? -ne 0 ]; then
     echo -e "$R$2... failure $N" &>>$LOG_Path
     else
     echo  -e "$G$2... success $N" &>>$LOG_Path
