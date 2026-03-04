@@ -21,36 +21,36 @@ mkdir -p $LOGS_DIR
 
 VALIDATE() {
     if [ $? -ne 0 ]; then
-    echo -e "$R$2 is failure... $N" &>>$LOGS_DIR
+    echo -e "$R$2 is failure... $N" | tee -a $LOGS_DIR
     exit 1
     else
-    echo -e "$G$2 is Success... $N" &>>$LOGS_DIR
+    echo -e "$G$2 is Success... $N" | tee -a $LOGS_DIR
     fi
 }
 
-dnf module disable nginx -y
+dnf module disable nginx -y &>>$LOGS_DIR
 VALIDATE $? "Disable Nginx"
 
-dnf module enable nginx:1.24 -y
+dnf module enable nginx:1.24 -y &>>$LOGS_DIR
 VALIDATE $? "enable Nginx"
 
-dnf install nginx -y
+dnf install nginx -y &>>$LOGS_DIR
 VALIDATE $? "Install Nginx"
 
-systemctl enable --now nginx
+systemctl enable --now nginx &>>$LOGS_DIR
 VALIDATE $? "Enable and start Nginx"
 
-rm -rf /usr/share/nginx/html/* 
+rm -rf /usr/share/nginx/html/*  &>>$LOGS_DIR
 VALIDATE $? "Removing old Nginx html"
 
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_DIR
 VALIDATE $? "Curl frontend"
 
-unzip /tmp/frontend.zip /usr/share/nginx/html/
+unzip /tmp/frontend.zip /usr/share/nginx/html/ &>>$LOGS_DIR
 VALIDATE $? "html unzip"
 
-cp nginx.conf /etc/nginx
+cp nginx.conf /etc/nginx &>>$LOGS_DIR
 VALIDATE $? "Copy Nginx Conf"
 
-systemctl restart nginx 
+systemctl restart nginx  &>>$LOGS_DIR
 VALIDATE $? "Restart Nginx"
