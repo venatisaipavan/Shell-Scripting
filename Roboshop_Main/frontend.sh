@@ -15,6 +15,7 @@ echo -e "$R This need Root Privilages..Exiting $N" | tee -a $LOGS_DIR
 exit 1
 else
 echo -e "$G Thanks for Running via Root..$N " | tee -a $LOGS_DIR
+fi
 
 mkdir -p $LOGS_DIR
 
