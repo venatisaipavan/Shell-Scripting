@@ -18,9 +18,9 @@ fi
 
 VALIDATE() {
    if [ $? -ne 0 ]; then
-    echo -e "$R$2... failure $N" &>>$LOG_Path
+    echo -e "$R$2... failure $N"  | tee -a $LOG_Path
     else
-    echo  -e "$G$2... success $N" &>>$LOG_Path
+    echo  -e "$G$2... success $N" | tee -a $LOG_Path
    fi
 }
 
