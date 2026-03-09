@@ -10,7 +10,7 @@ LOG_DIR="/var/log/roboshop"
 LOG_Path="$LOG_DIR/$0.log"
 DIR=$PWD
 
-mkdir -p $LOGS_DIR
+mkdir -p $LOG_DIR
 
 if [ $ID -ne 0 ]; then
     echo "$R Script Need Root Privilages..Exiting! $N" | tee -a $LOG_Path
