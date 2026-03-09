@@ -27,54 +27,54 @@ VALIDATE() {
    fi
 }
 
-dnf install maven -y &>>$LOGS_PATH
+dnf install maven -y &>>$LOG_PATH
 VALIDATE $? "Install Maven"
 
 id roboshop
 if [ $? -ne 0 ]; then
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOGS_PATH
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOG_PATH
 else
 echo " user already Exists"
 fi
 VALIDATE $? "User Roboshop creation"
 
 
-mkdir -p /app &>>$LOGS_PATH
+mkdir -p /app &>>$LOG_PATH
 VALIDATE $? "Create /app dir"
 
-rm -rf /app/* &>>$LOGS_PATH
+rm -rf /app/* &>>$LOG_PATH
 VALIDATE $? "remove /app/*"
 
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip ; cd /app ; unzip /tmp/shipping.zip &>>$LOGS_PATH
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip ; cd /app ; unzip /tmp/shipping.zip &>>$LOG_PATH
 VALIDATE $? "unzip to /app"
 
-cd /app ; mvn clean package ; mv target/shipping-1.0.jar shipping.jar &>>$LOGS_PATH
+cd /app ; mvn clean package ; mv target/shipping-1.0.jar shipping.jar &>>$LOG_PATH
 VALIDATE $? " mvn clean package"
 
 cd $DIR
 
-rm -rf /etc/systemd/system/shipping.service &>>$LOGS_PATH
+rm -rf /etc/systemd/system/shipping.service &>>$LOG_PATH
 VALIDATE $? "Remove old shipping service"
 
-cp shipping.service /etc/systemd/system/ &>>$LOGS_PATH
+cp shipping.service /etc/systemd/system/ &>>$LOG_PATH
 VALIDATE $? "copy shipping service "
 
 
-systemctl daemon-reload &>>$LOGS_PATH
+systemctl daemon-reload &>>$LOG_PATH
 VALIDATE $? "Daemon reload"
 
-systemctl enable --now shipping  &>>$LOGS_PATH
+systemctl enable --now shipping  &>>$LOG_PATH
 VALIDATE $? "enable and start"
 
-dnf install mysql -y &>>$LOGS_PATH
+dnf install mysql -y &>>$LOG_PATH
 VALIDATE $? "install mysql"
 
 mysql -h mysql.vsp-97.online -uroot -pRoboShop@1 < /app/db/schema.sql
  
 mysql -h mysql.vsp-97.online -uroot -pRoboShop@1 < /app/db/app-user.sql 
  
-mysql -h mysql.vsp-97.online -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOGS_PATH
+mysql -h mysql.vsp-97.online -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$LOG_PATH
 VALIDATE $? "update schema,app-user,master-data.sql"
 
-systemctl restart shipping &>>$LOGS_PATH
+systemctl restart shipping &>>$LOG_PATH
 VALIDATE $? "Restart Shipping"
