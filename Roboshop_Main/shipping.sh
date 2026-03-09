@@ -5,10 +5,11 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+DIR=$PWD
 
 LOG_DIR="/var/log/roboshop"
 LOG_Path="$LOG_DIR/$0.log"
-DIR=$PWD
+
 
 mkdir -p $LOG_DIR
 
