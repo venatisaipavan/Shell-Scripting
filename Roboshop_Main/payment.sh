@@ -62,4 +62,4 @@ systemctl daemon-reload &>> $LOGS_Path
 VALIDATE $? "Daemon Reload"
 
 systemctl enable --now payment  &>> $LOGS_Path
-VALIDATE $? "Payment enable and start
+VALIDATE $? "Payment enable and start"
