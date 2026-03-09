@@ -36,7 +36,12 @@ VALIDATE $? "enable nodejs"
 dnf install nodejs -y &>>$LOGS_PATH
 VALIDATE $? "install nodejs"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_PATH
+id roboshop
+if [ $? -ne 0 ]; then
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOGS_PATH
+else
+echo " user already Exists"
+fi
 VALIDATE $? "User Roboshop creation"
 
 mkdir -p /app  &>>$LOGS_PATH

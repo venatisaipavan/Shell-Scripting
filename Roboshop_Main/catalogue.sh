@@ -35,8 +35,14 @@ VALIDATE $? "enable Nodejs20"
 
 dnf install nodejs -y  &>>$LOGS_PATH
 VALIDATE $? "install Nodejs"
- 
+
+id roboshop
+if [ $? -ne 0 ]; then
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>>$LOGS_PATH
+else
+echo " user already Exists"
+fi
+
 VALIDATE $? "Roboshop User creation"
 
 mkdir -p /app  &>>$LOGS_PATH
