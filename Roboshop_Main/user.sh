@@ -10,6 +10,8 @@ DIR=$PWD
 LOGS_DIR="/var/log/Roboshop"
 LOGS_PATH="$LOGS_DIR/$0.log"
 
+mkdir -p $LOGS_DIR
+
 if [ $ID -ne 0 ]; then
 echo -e "$R This need Root Privilages..Exiting $N" | tee -a $LOGS_PATH
 exit 1
@@ -17,7 +19,7 @@ else
 echo -e "$G Thanks for Running via Root..$N " | tee -a $LOGS_PATH
 fi
 
-mkdir -p $LOGS_DIR
+
 
 VALIDATE(){
     if [ $? -ne 0 ]; then

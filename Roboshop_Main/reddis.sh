@@ -9,6 +9,8 @@ N="\e[0m"
 LOG_DIR="/var/log/roboshop"
 LOG_Path="$LOG_DIR/$0.log"
 
+mkdir -p $LOGS_DIR
+
 if [ $ID -ne 0 ]; then
     echo "$R Script Need Root Privilages..Exiting! $N" | tee -a $LOG_Path
     exit 1
@@ -23,8 +25,6 @@ VALIDATE() {
     echo  -e "$G$2... success $N" | tee -a $LOG_Path
    fi
 }
-
-mkdir -p $LOG_DIR
 
 dnf module disable redis -y &>> $LOG_Path
 VALIDATE $? "disable redis module"

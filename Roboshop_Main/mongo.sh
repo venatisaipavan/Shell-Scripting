@@ -9,6 +9,8 @@ N="\e[0m"
 LOG_DIR="/var/log/roboshop"
 LOG_Path="$LOG_DIR/$0.log"
 
+mkdir -p $LOGS_DIR
+
 if [ $ID -ne 0 ]; then
     echo "$R Script Need Root Privilages..Exiting! $N" | tee -a $LOG_Path
     exit 1
@@ -24,7 +26,6 @@ VALIDATE() {
    fi
 }
 
-mkdir -p $LOG_DIR
 
 rm -rf  /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Remove Old mongo repo"
