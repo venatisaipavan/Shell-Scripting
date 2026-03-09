@@ -48,6 +48,8 @@ VALIDATE $? "Roboshop User creation"
 mkdir -p /app  &>>$LOGS_PATH
 VALIDATE $? "crate /app directory"
 
+rm -rf /app/*
+
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip ; cd /app ; unzip /tmp/catalogue.zip &>>$LOGS_PATH
 VALIDATE $? "Copy and unzip catalogue to /app"
 

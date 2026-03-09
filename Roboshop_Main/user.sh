@@ -46,6 +46,8 @@ VALIDATE $? "User Roboshop creation"
 
 mkdir -p /app  &>>$LOGS_PATH
 
+rm -rf /app/*
+
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip; cd /app; unzip /tmp/user.zip  &>>$LOGS_PATH
 VALIDATE $? "unzip user"
 

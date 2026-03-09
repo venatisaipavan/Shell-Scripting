@@ -47,6 +47,8 @@ VALIDATE $? "Roboshop user creation"
 mkdir -p /app 
 VALIDATE $? "Create /app dir"
 
+rm -rf /app/*
+
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip ; cd /app ; unzip /tmp/cart.zip
 VALIDATE $? "unzip cart"
 
