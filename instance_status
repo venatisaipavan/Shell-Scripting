@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in $(cat /home/cloudshell-user/Instances_List)
+do
+Instnaces=$(aws ec2 describe-instances --instance-ids $i --query 'Reservations[].Instances[].State.Name' --output text
+)
+echo " i is in $Instnaces state"
+done
